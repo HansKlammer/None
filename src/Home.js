@@ -15,10 +15,18 @@ class Home extends Component {
     this.setState({ count });
   };
   render() {
-    const op="list"
+    const uuu = (
+      <div>
+        {" "}
+        Homepage{"   "}
+        <Button outline color="primary">
+          {this.state.count}
+        </Button>
+      </div>
+    );
     return (
       <div>
-        <Header ok={this.state.count}/>
+        <Header headerele={uuu} />
         <div className="home">
           <div>
             Send Nortification{" "}
@@ -28,7 +36,7 @@ class Home extends Component {
           </div>
           <Car />
         </div>
-        <Footer ru={op}/>
+        <Footer ru="list" />
       </div>
     );
   }

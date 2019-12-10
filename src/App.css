@@ -34,12 +34,12 @@
 }
 
 .home > div {
-    margin-bottom:0%;
+  margin-bottom: 0%;
 }
 
 .list {
   position: fixed;
-  width: 60%;
+  min-width: 60%;
   top: 10vh;
   flex-direction: column;
   display: flex;
@@ -50,3 +50,8 @@
   margin-bottom: 30%;
   font-size: 12px;
 }
+.nav {
+  display: flex;
+  justify-content: space-around;
+}
+

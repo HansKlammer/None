@@ -7,6 +7,7 @@ import { Container, Row, Col } from "reactstrap";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import List from "./List";
 import Tablet from "./Table"
+import About from "./About"
 
 class App extends Component {
   render() {
@@ -22,7 +23,7 @@ class App extends Component {
             </Route>
             <Route path='/list'><List/></Route>
             <Route path='/table'><Tablet/></Route>
-            <Route path='/about'></Route>
+            <Route path='/about'><About/></Route>
           </Switch>
         </Container>
       </Router>

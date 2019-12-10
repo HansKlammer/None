@@ -6,6 +6,7 @@ import { ListGroup, ListGroupItem } from "reactstrap";
 import { Table } from "reactstrap";
 import Header from "./Header";
 import Footer from "./Footer";
+import { Button } from "reactstrap";
 
 People.forEach((e, i) => (e.id = i));
 class List extends Component {
@@ -14,7 +15,8 @@ class List extends Component {
     jobTitle: 0,
     region: 0,
     phoneNumber: 0,
-    email: 0
+    email: 0,
+    tab:"none"
   };
   handleClick = id => {
     const xen = People.filter((e, i) => id === i);
@@ -23,14 +25,17 @@ class List extends Component {
       jobTitle: xen[0].jobTitleName,
       region: xen[0].region,
       phoneNumber: xen[0].phoneNumber,
-      email: xen[0].emailAddress
+      email: xen[0].emailAddress,
+      tab:""
     });
   };
   render() {
-    const op="table"
+    const uuu = <div>Person List</div>
+    
     return (
-      <div className="home">
-        <Header />
+      <div className="list">
+        <Header headerele={uuu} />
+        <div style={{display:this.state.tab}}>
         <Table bordered size="sm">
           <thead>
             <tr>
@@ -51,6 +56,7 @@ class List extends Component {
             </tr>
           </tbody>
         </Table>
+        </div>
         <ListGroup size="sm">
           <ListGroupItem active>Click on person for more details</ListGroupItem>
           {People.map((e, i) => (
@@ -63,7 +69,7 @@ class List extends Component {
             </ListGroupItem>
           ))}
         </ListGroup>
-        <Footer ru={op}/>
+        <Footer ru="table"/>
       </div>
     );
   }
