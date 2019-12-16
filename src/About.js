@@ -14,31 +14,52 @@ import {
 import { Button } from "reactstrap";
 
 class About extends Component {
-  state = { set1: "", set2: "", set3: "", yes1:false, yes2:false, yes3:false, no1:false, no2:false, no3:false};
-  handleChange1 = event => {
-    this.setState({ set1: event.target.value });
+  state = {
+    email: "",
+    password: "",
+    message: "",
+    isvalid1: false,
+    isinvalid1: false,
+    isvalid2: false,
+    isinvalid2: false,
+    isvalid3: false,
+    isinvalid3: false,
+    popupError: true
   };
-  handleChange2 = event => {
-    this.setState({ set2: event.target.value });
+  handleChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
   };
-  handleChange3 = event => {
-    this.setState({ set3: event.target.value });
-  };
+
   handleSubmit = () => {
-    if(this.state.set1 === ""){
-      this.setState({no1:true})
-    }else{
-      this.setState({yes1:true})
+    if (this.state.email.length <= 0) {
+      this.setState({ isinvalid1: true });
+      this.setState({ isvalid1: false });
+    } else {
+      this.setState({ isvalid1: true });
+      this.setState({ isinvalid1: false });
     }
-    if(this.state.set2 === ""){
-      this.setState({no2:true})
-    }else{
-      this.setState({yes2:true})
+    if (this.state.password.length <= 0) {
+      this.setState({ isinvalid2: true });
+      this.setState({ isvalid2: false });
+    } else {
+      this.setState({ isvalid2: true });
+      this.setState({ isinvalid2: false });
     }
-    if(this.state.set3 === ""){
-      this.setState({no3:true})
-    }else{
-      this.setState({yes3:true})
+    if (this.state.message.length <= 0) {
+      this.setState({ isinvalid3: true });
+      this.setState({ isvalid3: false });
+    } else {
+      this.setState({ isvalid3: true });
+      this.setState({ isinvalid3: false });
+    }
+    if (
+      this.state.email.length <= 0 ||
+      this.state.password.length <= 0 ||
+      this.state.message.length <= 0
+    ) {
+      this.setState({popupError:false})
+    } else {
+      this.setState({popupError:true})
     }
   };
   render() {
@@ -47,17 +68,20 @@ class About extends Component {
     return (
       <div>
         <div>
+          <Button color="danger" hidden={this.state.popupError}>All fields are required</Button>
           <FormGroup>
             <Form>
               <Label>Email</Label>
               <Input
                 type="email"
                 placeholder="Dundie@is-the.best"
-                value={this.state.set1}
+                value={this.state.email}
                 key={arr[0]}
-                onChange={this.handleChange1}
-                valid={this.state.yes1}
-                invalid={this.state.no1}
+                name="email"
+                onSubmit={this.handleSubmiting}
+                onChange={this.handleChange}
+                valid={this.state.isvalid1 ? true : false}
+                invalid={this.state.isinvalid1 ? true : false}
               ></Input>
             </Form>
             <Form>
@@ -65,11 +89,12 @@ class About extends Component {
               <Input
                 type="text"
                 placeholder="Name"
-                value2={this.state.set2}
+                value={this.state.password}
                 key={arr[1]}
-                onChange={this.handleChange2}
-                valid={this.state.yes2}
-                invalid={this.state.no2}
+                name="password"
+                onChange={this.handleChange}
+                valid={this.state.isvalid2 ? true : false}
+                invalid={this.state.isinvalid2 ? true : false}
               ></Input>
             </Form>
             <Form>
@@ -77,11 +102,12 @@ class About extends Component {
               <Input
                 type="text"
                 placeholder="Please send us message"
-                value3={this.state.set3}
+                value={this.state.message}
                 key={arr[2]}
-                onChange={this.handleChange3}
-                valid={this.state.yes3}
-                invalid={this.state.no3}
+                name="message"
+                onChange={this.handleChange}
+                valid={this.state.isvalid3 ? true : false}
+                invalid={this.state.isinvalid3 ? true : false}
               ></Input>
             </Form>
           </FormGroup>
